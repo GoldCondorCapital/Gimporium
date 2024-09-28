@@ -62,7 +62,11 @@
           <img id="backWallTexture" src="images/dungeonwall.png">
           <img id="floorTexture" src="images/dungeonfloor.png">
           <img id="ceilingTexture" src="images/dungeonceiling.png">
-          <img id="backgroundTexture" src="images/dungeon.png"> <!-- Custom Dungeon Background Image -->
+          <img id="backgroundTexture" src="images/dungeon.png">
+           
+          <!-- Define Sound Asset -->
+          <audio id="scream" src="audio/scream.mp3"></audio>
+          <audio id="scream" src="audio/scream2.mp3"></audio>
         </a-assets>
 
         <!-- Custom Background Image -->
@@ -88,27 +92,56 @@
         <a-plane position="0 2 4.85" rotation="0 180 0" width="3.3" height="3.3" material="src: #frame; transparent: true"></a-plane>
         <a-plane position="0 2 4.8" rotation="0 180 0" width="2" height="2" material="src: #art4" class="clickable"></a-plane>
 
-        <!-- Escape Button -->
-        <a-entity position="0 1.5 4.5" rotation="0 180 0">
-          <a-plane width="2.5" height="1" color="#ff3333" class="clickable" event-set__mouseenter="scale: 1.1 1.1 1.1" event-set__mouseleave="scale: 1 1 1" onclick="window.location.href='index.html';">
-            <a-text value="This is too scary, get me out of here!" color="#FFD700" align="center" position="0 0 0.1" scale="1.5 1.5 1.5"></a-text>
+        <a-entity position="0 1.5 3" rotation="0 210 0">
+          <a-plane width="2" height="1.2" color="#ff3333" class="clickable"
+                    event-set__mouseenter="scale: 1.1 1.1 1.1"
+                    event-set__mouseleave="scale: 1 1 1"
+                    onclick="window.location.href='index.html';">
+            <a-text value="This is too scary, get me out of here!"
+                    color="#FFD700"
+                    align="center"
+                    position="0 0 0.1"
+                    scale="1.2 1.2 1.2"></a-text>
           </a-plane>
         </a-entity>
+        
+            
+
 
         <!-- Mobile-Optimized Torchlight Effect -->
         <a-entity camera look-controls position="0 1.6 0" touch-controls>
-          <a-entity light="type: spot; color: #ffffff; intensity: 1; angle: 30; penumbra: 0.7; distance: 15; decay: 1.5" position="0 0 -0.5"></a-entity>
+          <a-entity light="type: spot; color: #ffffff; intensity: 1; angle: 40; penumbra: 0.7; distance: 15; decay: 1.5" position="0 0 -0.5"></a-entity>
           <a-cursor color="white"></a-cursor>
         </a-entity>
       </a-scene>
     </div>
 
     <script>
-      // Show scene and hide loading screen once assets are loaded
-      document.querySelector('a-scene').addEventListener('loaded', () => {
+      // Show scene and hide loading screen after 5-second delay
+      setTimeout(() => {
+        // Hide the loading screen and show the main scene container
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('sceneContainer').style.display = 'block';
-      });
+    
+        // Play the scream sounds when the scene loads
+        const screamSound1 = document.getElementById('scream');  // First scream sound
+        const screamSound2 = document.getElementById('scream2'); // Second scream sound
+    
+        // Play both scream sounds simultaneously
+        screamSound1.play().catch(() => {
+          document.addEventListener('click', () => {
+            screamSound1.play();
+          }, { once: true });
+        });
+    
+        screamSound2.play().catch(() => {
+          document.addEventListener('click', () => {
+            screamSound2.play();
+          }, { once: true });
+        });
+      }, 5000);
     </script>
+    
+    
   </body>
 </html>

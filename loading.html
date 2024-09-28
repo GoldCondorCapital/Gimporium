@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading - Endless Gimp</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFD700;
+        font-size: 24px;
+        text-align: center;
+      }
+
+      /* Slideshow Background Animation */
+      .loading-screen {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation: slideshow 15s infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+
+      /* Define the Keyframes for the Slideshow */
+      @keyframes slideshow {
+        0% { background: url('images/dungeon.png') no-repeat center center; background-size: cover; }
+        20% { background: url('images/dungeon2.png') no-repeat center center; background-size: cover; }
+        40% { background: url('images/dungeonceiling.png') no-repeat center center; background-size: cover; }
+        60% { background: url('images/dungeonleftwall.png') no-repeat center center; background-size: cover; }
+        80% { background: url('images/dungeonrightwall.png') no-repeat center center; background-size: cover; }
+        100% { background: url('images/dungeon.png') no-repeat center center; background-size: cover; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen with Rotating Background Images -->
+    <div id="loadingScreen" class="loading-screen">
+      Loading Endless Gimp, please wait...
+    </div>
+
+    <script>
+      // Redirect to the external link after a 5-second delay
+      setTimeout(() => {
+        window.location.href = "https://gimp-website.onrender.com/";
+      }, 5000);  // Redirect after 5 seconds
+    </script>
+  </body>
+</html>
